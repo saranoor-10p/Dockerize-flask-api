@@ -107,6 +107,7 @@ celerybeat.pid
 env/
 venv/bin/
 venv/lib/
+venv/flask-api/
 venv/
 ENV/
 env.bak/
