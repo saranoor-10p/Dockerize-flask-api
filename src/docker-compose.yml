@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  flaskapp:
+    container_name: flaskapp
+    image: flaskapp
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/books
+    depends_on:
+      - dbase
+    links: 
+      - dbase
+
+  dbase:
+    container_name: dbase
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=books
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+volumes:
+  pgdata: {}
+
